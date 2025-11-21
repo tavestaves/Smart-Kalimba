@@ -13,7 +13,17 @@
         <button id="btnDownload" disabled>Download WAV</button>
         <div style="margin-top:8px; font-size:13px">WebSocket: <span id="wsStatus">DISCONNECTED</span></div>
     </div>
-    <canvas id="wave" width="800" height="150" style="border:1px solid #ccc; display:block; margin-bottom:8px"></canvas>
+    <canvas id="wave" width="520" height="150" style="border:1px solid #ccc; display:block; margin-bottom:8px"></canvas>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+        <canvas id="plotter" width="260" height="150" style="border:1px solid #ccc; display:block; background:#fff"></canvas>
+        <div style="font-family:sans-serif; font-size:13px;">
+            <div style="margin-bottom:6px"><strong>Plotter:</strong> live CSV / numeric plot</div>
+            <div style="display:flex; gap:6px;">
+                <button id="btnPlotPause">Pause Plot</button>
+                <button id="btnPlotClear">Clear</button>
+            </div>
+        </div>
+    </div>
     <div style="width:200px; font-family:sans-serif;">
         <h4>Metrics</h4>
         <div>Queued samples: <span id="queued">0</span></div>
@@ -21,6 +31,19 @@
         <div>Peak: <span id="peak">0</span></div>
         <div>Freq (est): <span id="freq">-</span> Hz</div>
         <div style="margin-top:8px; font-size:12px; color:#666">Recorded samples retained for download</div>
+    </div>
+</div>
+<!-- Big ADC Serial Plotter -->
+<h3>Serial Plotter (ADC - Raw Values)</h3>
+<div style="margin-bottom:12px;">
+    <canvas id="plotterBig" width="900" height="300" style="border:1px solid #ccc; background:#fff; display:block"></canvas>
+    <div style="margin-top:6px; display:flex; gap:8px; align-items:center;">
+        <button id="btnBigPause">Pause</button>
+        <button id="btnBigClear">Clear</button>
+        <label style="display:flex; gap:6px; align-items:center;">Autoscale<input id="bigAuto" type="checkbox" checked style="margin-left:6px"></label>
+        <label style="display:flex; gap:6px; align-items:center;">Y min<input id="bigYmin" type="number" style="width:80px" placeholder="min"></label>
+        <label style="display:flex; gap:6px; align-items:center;">Y max<input id="bigYmax" type="number" style="width:80px" placeholder="max"></label>
+        <div style="margin-left:8px; font-size:13px; color:#444">Expecting raw ADC integers (e.g. 0..4095)</div>
     </div>
 </div>
 <script>
@@ -56,7 +79,22 @@ const canvasH = canvas.height;
 let lastDrawTime = 0;
 
 function handleMessageData(msg) {
-    const arr = new Uint8Array(msg);
+    // If text CSV/numeric lines are received, parse and feed the plotter
+    if (typeof msg === 'string' || msg instanceof String) {
+        const lines = msg.trim().split(/\r?\n/);
+        for (const line of lines) {
+            if (!line) continue;
+            const parts = line.split(/[,\s]+/).map(s => parseFloat(s)).filter(x => !isNaN(x));
+            if (parts.length) {
+                pushPlotValues(parts);
+                pushBigPlotValues(parts);
+            }
+        }
+        return;
+    }
+
+    // Binary audio frames (ArrayBuffer/Uint8Array)
+    const arr = (msg instanceof ArrayBuffer) ? new Uint8Array(msg) : new Uint8Array(msg);
     const n = Math.floor(arr.length / 2);
     // Convert to float samples -1..1 (12-bit unsigned centered at 2048)
     for (let i = 0; i < n; i++) {
@@ -201,6 +239,195 @@ function drawWave() {
     const status = playing ? 'PLAYING' : 'BUFFERING';
     ctx.fillText(`${status}  queued:${totalQueued} samples`, 8, 14);
 }
+
+// --- Serial Plotter-like panel (simple, client-side) ---
+const plotCanvas = document.getElementById('plotter');
+const plotCtx = plotCanvas.getContext('2d');
+const plotW = plotCanvas.width;
+const plotH = plotCanvas.height;
+const maxPlotPoints = plotW;
+const plotColors = ['#e6194b','#3cb44b','#ffe119','#4363d8','#f58231'];
+let plotChannels = []; // dynamic arrays per channel
+let plotPaused = false;
+
+function pushPlotValues(values) {
+    // ensure we have arrays for channels
+    while (plotChannels.length < values.length) plotChannels.push([]);
+    for (let c = 0; c < values.length; c++) {
+        const ch = plotChannels[c];
+        ch.push(values[c]);
+        if (ch.length > maxPlotPoints) ch.splice(0, ch.length - maxPlotPoints);
+    }
+}
+
+function drawPlot() {
+    requestAnimationFrame(drawPlot);
+    if (plotPaused) return;
+
+    // background + grid
+    plotCtx.fillStyle = '#fff';
+    plotCtx.fillRect(0, 0, plotW, plotH);
+    plotCtx.strokeStyle = '#eee';
+    plotCtx.lineWidth = 1;
+    plotCtx.beginPath();
+    for (let gx = 0; gx <= 4; gx++) {
+        const x = gx * plotW / 4;
+        plotCtx.moveTo(x, 0);
+        plotCtx.lineTo(x, plotH);
+    }
+    for (let gy = 0; gy <= 4; gy++) {
+        const y = gy * plotH / 4;
+        plotCtx.moveTo(0, y);
+        plotCtx.lineTo(plotW, y);
+    }
+    plotCtx.stroke();
+
+    // draw each channel
+    for (let c = 0; c < plotChannels.length; c++) {
+        const ch = plotChannels[c];
+        if (!ch.length) continue;
+        // compute min/max for auto-scaling
+        let min = Infinity, max = -Infinity;
+        for (let i = 0; i < ch.length; i++) { min = Math.min(min, ch[i]); max = Math.max(max, ch[i]); }
+        if (!isFinite(min) || !isFinite(max)) { min = -1; max = 1; }
+        if (min === max) { min -= 0.5; max += 0.5; }
+
+        plotCtx.strokeStyle = plotColors[c % plotColors.length];
+        plotCtx.lineWidth = 1.5;
+        plotCtx.beginPath();
+        const len = ch.length;
+        for (let i = 0; i < len; i++) {
+            const x = plotW - len + i;
+            const v = ch[i];
+            const norm = (v - min) / (max - min);
+            const y = plotH - Math.max(0, Math.min(1, norm)) * plotH;
+            if (i === 0) plotCtx.moveTo(x, y);
+            else plotCtx.lineTo(x, y);
+        }
+        plotCtx.stroke();
+    }
+
+    // legend / status
+    plotCtx.fillStyle = '#000';
+    plotCtx.font = '11px sans-serif';
+    plotCtx.fillText(`Channels: ${plotChannels.length}`, 6, 12);
+}
+
+// start plot loop
+drawPlot();
+
+// plot control buttons
+document.getElementById('btnPlotPause').addEventListener('click', () => {
+    plotPaused = !plotPaused;
+    document.getElementById('btnPlotPause').textContent = plotPaused ? 'Resume Plot' : 'Pause Plot';
+});
+document.getElementById('btnPlotClear').addEventListener('click', () => { plotChannels = []; });
+
+// start visualizer loop
+// --- Big ADC plot JS ---
+const bigCanvas = document.getElementById('plotterBig');
+const bigCtx = bigCanvas.getContext('2d');
+const bigW = bigCanvas.width;
+const bigH = bigCanvas.height;
+const maxBigPoints = bigW;
+let bigChannels = []; // arrays of raw ADC values per channel
+let bigPaused = false;
+
+const bigAutoEl = document.getElementById('bigAuto');
+const bigYminEl = document.getElementById('bigYmin');
+const bigYmaxEl = document.getElementById('bigYmax');
+
+function pushBigPlotValues(values) {
+    // store integer ADC values
+    while (bigChannels.length < values.length) bigChannels.push([]);
+    for (let c = 0; c < values.length; c++) {
+        const ch = bigChannels[c];
+        // store as integer (raw ADC)
+        const v = Math.round(values[c]);
+        ch.push(v);
+        if (ch.length > maxBigPoints) ch.splice(0, ch.length - maxBigPoints);
+    }
+}
+
+function drawBigPlot() {
+    requestAnimationFrame(drawBigPlot);
+    if (bigPaused) return;
+
+    // background
+    bigCtx.fillStyle = '#fff';
+    bigCtx.fillRect(0, 0, bigW, bigH);
+
+    // grid
+    bigCtx.strokeStyle = '#eee';
+    bigCtx.lineWidth = 1;
+    bigCtx.beginPath();
+    for (let gx = 0; gx <= 8; gx++) {
+        const x = gx * bigW / 8;
+        bigCtx.moveTo(x, 0);
+        bigCtx.lineTo(x, bigH);
+    }
+    for (let gy = 0; gy <= 6; gy++) {
+        const y = gy * bigH / 6;
+        bigCtx.moveTo(0, y);
+        bigCtx.lineTo(bigW, y);
+    }
+    bigCtx.stroke();
+
+    // draw channels
+    for (let c = 0; c < bigChannels.length; c++) {
+        const ch = bigChannels[c];
+        if (!ch.length) continue;
+
+        // determine min/max
+        let min = Infinity, max = -Infinity;
+        for (let i = 0; i < ch.length; i++) { min = Math.min(min, ch[i]); max = Math.max(max, ch[i]); }
+
+        // manual override
+        if (!bigAutoEl.checked) {
+            const mmin = parseFloat(bigYminEl.value);
+            const mmax = parseFloat(bigYmaxEl.value);
+            if (!isNaN(mmin) && !isNaN(mmax) && mmax > mmin) { min = mmin; max = mmax; }
+        }
+
+        if (!isFinite(min) || !isFinite(max) || min === max) { min = 0; max = 4095; }
+
+        bigCtx.strokeStyle = plotColors[c % plotColors.length];
+        bigCtx.lineWidth = 1.5;
+        bigCtx.beginPath();
+        const len = ch.length;
+        for (let i = 0; i < len; i++) {
+            const x = bigW - len + i;
+            const v = ch[i];
+            const norm = (v - min) / (max - min);
+            const y = bigH - Math.max(0, Math.min(1, norm)) * bigH;
+            if (i === 0) bigCtx.moveTo(x, y);
+            else bigCtx.lineTo(x, y);
+        }
+        bigCtx.stroke();
+
+        // draw min/max labels for first channel
+        if (c === 0) {
+            bigCtx.fillStyle = '#000';
+            bigCtx.font = '12px sans-serif';
+            bigCtx.fillText(`${Math.round(max)}`, 6, 14);
+            bigCtx.fillText(`${Math.round(min)}`, 6, bigH - 6);
+        }
+    }
+
+    bigCtx.fillStyle = '#000';
+    bigCtx.font = '12px sans-serif';
+    bigCtx.fillText(`Channels: ${bigChannels.length}`, bigW - 120, 14);
+}
+
+// start big plot loop
+drawBigPlot();
+
+// controls
+document.getElementById('btnBigPause').addEventListener('click', function() {
+    bigPaused = !bigPaused;
+    this.textContent = bigPaused ? 'Resume' : 'Pause';
+});
+document.getElementById('btnBigClear').addEventListener('click', () => { bigChannels = []; });
 
 // start visualizer loop
 drawWave();

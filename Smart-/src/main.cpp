@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WebSocketsServer.h>
-
+//Taves
 const char* ssid     = "Ncube-Wifi";
 const char* password = "Qwerty02.";
 
@@ -9,9 +9,11 @@ WebSocketsServer wsServer(81);
 
 const int adcPin = 36;       // ADC1 pin (safe for analogRead)
 const int sampleRate = 8000; // 8kHz stream (enough for testing)
+const int textDecimate = 4;  // send one ASCII ADC value every N samples (reduce text traffic)
 
 unsigned long lastSampleMicros = 0;
 const unsigned long sampleInterval = 1000000UL / sampleRate;
+int sampleCount = 0;
 
 void onWsEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t len) {
   // You can add connection logging if you want.
@@ -68,5 +70,14 @@ void loop() {
     packet[1] = v16 & 0xFF;         // low byte
 
     wsServer.broadcastBIN(packet, 2);
+    // Also send a text representation (decimated) so web UI can plot raw ADC values
+    sampleCount++;
+    if ((sampleCount % textDecimate) == 0) {
+      char buf[16];
+      int n = snprintf(buf, sizeof(buf), "%d", value);
+      if (n > 0) {
+        wsServer.broadcastTXT((uint8_t*)buf, n);
+      }
+    }
   }
 }
