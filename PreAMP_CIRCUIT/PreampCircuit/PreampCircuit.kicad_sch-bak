@@ -321,183 +321,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:Battery_Cell"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "BT"
-				(at 2.54 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Battery_Cell"
-				(at 2.54 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 1.524 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 1.524 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single-cell battery"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "battery cell"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Battery_Cell_0_1"
-				(rectangle
-					(start -2.286 1.778)
-					(end 2.286 1.524)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -1.524 1.016)
-					(end 1.524 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.778) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 0 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 3.048) (xy 1.778 3.048)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 3.556) (xy 1.27 2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Battery_Cell_1_1"
-				(pin passive line
-					(at 0 5.08 270)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.54)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:C_Polarized"
 			(pin_numbers
 				(hide yes)
@@ -783,24 +606,239 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R_Potentiometer"
+		(symbol "Simulation_SPICE:NJFET"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 1.016)
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "NJFET"
+				(at 5.08 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_JFETs"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "N-JFET transistor, for simulation only"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "NJFET"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Type" "SHICHMANHODGES"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=D 2=G 3=S"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "transistor NJFET N-JFET"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "NJFET_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy -1.016 0.381) (xy -1.016 -0.381) (xy 0 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 0)
+					(radius 2.8194)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.397) (xy 0.254 1.397)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 -1.27) (xy 0.254 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "NJFET_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 5.334)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+9V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
 				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "RV"
-				(at -4.445 0 90)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(hide yes)
 				)
 			)
-			(property "Value" "R_Potentiometer"
-				(at -2.54 0 90)
+			(property "Value" "+9V"
+				(at 0 3.556 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -816,172 +854,6 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Potentiometer"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "resistor variable"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Potentiometer*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R_Potentiometer_0_1"
-				(rectangle
-					(start 1.016 2.54)
-					(end -1.016 -2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.143 0) (xy 2.286 0.508) (xy 2.286 -0.508) (xy 1.143 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 1.524 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_Potentiometer_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 1.27)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "JFET:2N3819"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at -10.16 2.413 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "2N3819"
-				(at -10.16 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "2N3819:TRANS_2N3819"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
 			(property "Datasheet" ""
 				(at 0 0 0)
 				(effects
@@ -991,7 +863,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Power symbol creates a global label with name \"+9V\""
 				(at 0 0 0)
 				(effects
 					(font
@@ -1000,133 +872,22 @@
 					(hide yes)
 				)
 			)
-			(property "MF" "Central Semiconductor"
+			(property "ki_keywords" "global power"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "4.83 mm"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "E-PKG AXIAL-LEADED-2 ON Semiconductor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/2N3819/Central+Components+Manufacturing/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "STANDARD" "IPC 7351B"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "PARTREV" "June, 2019"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/2N3819/Central+Components+Manufacturing/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "2N3819"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "RF Mosfet N-Channel JFET - - - TO-92-3"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MANUFACTURER" "InterFET"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "2N3819_0_0"
+			(symbol "+9V_0_1"
 				(polyline
 					(pts
-						(xy -2.54 -1.905) (xy -1.27 -2.54)
+						(xy -0.762 1.27) (xy 0 2.54)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1135,10 +896,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 -2.54) (xy -2.54 -3.175)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1147,93 +908,32 @@
 				)
 				(polyline
 					(pts
-						(xy 0 -3.81) (xy 0 3.81)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(text "G"
-					(at -4.445 -4.445 0)
-					(effects
-						(font
-							(size 1.524 1.524)
-						)
-						(justify left bottom)
-					)
-				)
-				(text "D"
-					(at 2.54 0.635 0)
-					(effects
-						(font
-							(size 1.524 1.524)
-						)
-						(justify left bottom)
-					)
-				)
-				(text "S"
-					(at 2.54 -4.445 0)
-					(effects
-						(font
-							(size 1.524 1.524)
-						)
-						(justify left bottom)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 5.08)
+			)
+			(symbol "+9V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
 					(name "~"
 						(effects
 							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -1355,7 +1055,7 @@
 	)
 	(text "PIEZO INPUT"
 		(exclude_from_sim no)
-		(at 39.37 29.718 0)
+		(at 39.37 32.258 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1374,6 +1074,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "572a1f56-0779-48d7-b4ff-b3efdfa2146c")
+	)
+	(junction
+		(at 66.04 66.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5bf421a7-8e49-4a7f-b9ba-3d1457aa1358")
 	)
 	(junction
 		(at 80.01 66.04)
@@ -1400,20 +1106,20 @@
 		(uuid "e1388a44-9b02-4a62-83a4-dd8ff26b76fc")
 	)
 	(junction
-		(at 53.34 40.64)
+		(at 66.04 43.18)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e83e3884-d2c5-48b5-984e-145b5d1f3554")
 	)
-	(junction
-		(at 53.34 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fbdfde37-84e3-4b23-b6a5-7ab3c07ed46a")
-	)
-	(no_connect
-		(at 53.34 54.61)
-		(uuid "b7142b78-3f7e-480b-b289-44f6fdb47fcb")
+	(wire
+		(pts
+			(xy 66.04 58.42) (xy 66.04 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0096989d-8556-42b7-808f-c419c734fa24")
 	)
 	(wire
 		(pts
@@ -1427,7 +1133,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 66.04) (xy 53.34 66.04)
+			(xy 54.61 66.04) (xy 66.04 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1447,17 +1153,17 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 21.59) (xy 134.62 21.59)
+			(xy 121.92 21.59) (xy 121.92 19.05)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "13762045-18c4-4c8f-8ece-13bc3b62a172")
+		(uuid "244049db-720a-46ff-824e-073d10eaf6f8")
 	)
 	(wire
 		(pts
-			(xy 40.64 66.04) (xy 40.64 43.18)
+			(xy 54.61 66.04) (xy 54.61 45.72)
 		)
 		(stroke
 			(width 0)
@@ -1467,7 +1173,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 43.18) (xy 40.64 43.18)
+			(xy 43.18 45.72) (xy 54.61 45.72)
 		)
 		(stroke
 			(width 0)
@@ -1487,7 +1193,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 40.64) (xy 69.85 40.64)
+			(xy 66.04 43.18) (xy 72.39 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1497,7 +1203,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 40.64) (xy 53.34 43.18)
+			(xy 66.04 43.18) (xy 66.04 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1537,27 +1243,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 50.8) (xy 59.69 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "83fb0259-07d4-4553-b7c0-5541eb6ba7fc")
-	)
-	(wire
-		(pts
-			(xy 134.62 21.59) (xy 134.62 24.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "881a3cc4-b825-4886-96da-e5005f9410b6")
-	)
-	(wire
-		(pts
-			(xy 30.48 40.64) (xy 53.34 40.64)
+			(xy 43.18 43.18) (xy 66.04 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1577,7 +1263,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 45.72) (xy 80.01 50.8)
+			(xy 80.01 50.8) (xy 80.01 48.26)
 		)
 		(stroke
 			(width 0)
@@ -1587,23 +1273,13 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 50.8) (xy 59.69 50.8)
+			(xy 66.04 66.04) (xy 80.01 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ae09a1c5-dda1-4969-a31d-79ddd43b6531")
-	)
-	(wire
-		(pts
-			(xy 53.34 62.23) (xy 53.34 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b01df9c4-3057-4d99-84d1-1d2b87798744")
+		(uuid "ad61108e-f7fa-420f-bac5-25c7d8bced76")
 	)
 	(wire
 		(pts
@@ -1677,33 +1353,13 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 35.56) (xy 80.01 40.64)
+			(xy 80.01 35.56) (xy 80.01 38.1)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "e6de62cf-3374-434a-9290-89ae4200783d")
-	)
-	(wire
-		(pts
-			(xy 53.34 66.04) (xy 80.01 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e76aaf3f-966e-4062-bf53-917841d6be07")
-	)
-	(wire
-		(pts
-			(xy 59.69 58.42) (xy 57.15 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eae12ef0-8763-4129-bb4a-011b3de7db85")
 	)
 	(wire
 		(pts
@@ -1753,7 +1409,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+		(property "Footprint" ""
 			(at 122.8852 53.34 0)
 			(effects
 				(font
@@ -1823,7 +1479,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
+		(property "Footprint" ""
 			(at 103.632 49.53 90)
 			(effects
 				(font
@@ -1932,35 +1588,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Potentiometer")
-		(at 53.34 58.42 0)
+		(lib_id "power:+9V")
+		(at 121.92 19.05 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "47ce01e4-c146-41bd-96af-3492e04a88c1")
-		(property "Reference" "RV1"
-			(at 50.8 57.1499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "R_Pot 3M"
-			(at 50.8 59.6899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Potentiometer_SMD:Potentiometer_Bourns_3314G_Vertical"
-			(at 53.34 58.42 0)
+		(uuid "3d61df1a-b8df-43ba-aefa-3f28bd138177")
+		(property "Reference" "#PWR02"
+			(at 121.92 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1968,8 +1606,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 53.34 58.42 0)
+		(property "Value" "+9V"
+			(at 121.92 13.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1977,8 +1623,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Potentiometer"
-			(at 53.34 58.42 0)
+		(property "Datasheet" ""
+			(at 121.92 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+9V\""
+			(at 121.92 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1987,18 +1642,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "73df417a-ca5d-45e4-9b57-6409b9612c05")
-		)
-		(pin "3"
-			(uuid "d38f79a4-c872-4757-9c97-e35f958b71d5")
-		)
-		(pin "2"
-			(uuid "a20abd4e-2792-4c92-830d-de6ce90a8b60")
+			(uuid "66483a45-4682-4e01-a133-032223c25b9a")
 		)
 		(instances
 			(project ""
 				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
-					(reference "RV1")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -2032,7 +1681,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
+		(property "Footprint" ""
 			(at 78.232 54.61 90)
 			(effects
 				(font
@@ -2075,43 +1724,35 @@
 		)
 	)
 	(symbol
-		(lib_id "JFET:2N3819")
-		(at 74.93 43.18 0)
+		(lib_id "Simulation_SPICE:NJFET")
+		(at 77.47 43.18 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5382579d-5f34-4aa7-8dfb-362bb0931f8b")
-		(property "Reference" "Q2"
-			(at 74.8729 52.07 0)
+		(uuid "542b3b3b-ea73-4706-a26f-0db1e4ef9d4c")
+		(property "Reference" "Q1"
+			(at 82.55 44.4501 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "2N3819"
-			(at 74.8729 49.53 0)
+		(property "Value" "NJFET,2N5457"
+			(at 82.55 41.9101 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "JFET:JFET"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 43.18 0)
+		(property "Footprint" ""
+			(at 82.55 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2119,8 +1760,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 74.93 43.18 0)
+		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_JFETs"
+			(at 77.47 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2128,139 +1769,55 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Central Semiconductor"
-			(at 74.93 43.18 0)
+		(property "Description" "N-JFET transistor, for simulation only"
+			(at 77.47 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "4.83 mm"
-			(at 74.93 43.18 0)
+		(property "Sim.Device" "NJFET"
+			(at 77.47 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Package" "E-PKG AXIAL-LEADED-2 ON Semiconductor"
-			(at 74.93 43.18 0)
+		(property "Sim.Type" "SHICHMANHODGES"
+			(at 77.47 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Price" "None"
-			(at 74.93 43.18 0)
+		(property "Sim.Pins" "1=D 2=G 3=S"
+			(at 77.47 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/2N3819/Central+Components+Manufacturing/view-part/?ref=eda"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "IPC 7351B"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" "June, 2019"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/2N3819/Central+Components+Manufacturing/view-part/?ref=snap"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "2N3819"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "RF Mosfet N-Channel JFET - - - TO-92-3"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "InterFET"
-			(at 74.93 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
 		(pin "3"
-			(uuid "198cd73f-4493-4ba9-b327-0da515de6a44")
+			(uuid "7699fd58-a1a2-46bd-881c-7feaadcb265a")
 		)
 		(pin "2"
-			(uuid "85317225-27e1-43c8-ba26-d3db0ac89408")
+			(uuid "b2b9e0ba-eaec-4c42-b4b1-1aeccd986dd3")
 		)
 		(pin "1"
-			(uuid "45c06846-77ef-4887-ba53-2247b8eec32e")
+			(uuid "73483ca2-9b9d-4162-adaf-ffabd77a26c7")
 		)
 		(instances
 			(project ""
 				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
-					(reference "Q2")
+					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -2268,7 +1825,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 25.4 40.64 0)
+		(at 38.1 43.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2277,7 +1834,7 @@
 		(fields_autoplaced yes)
 		(uuid "6852accc-0f27-4cb0-9958-ed0f217b7b53")
 		(property "Reference" "J2"
-			(at 26.035 35.56 0)
+			(at 38.735 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2285,15 +1842,15 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 26.035 38.1 0)
+			(at 38.735 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.00mm:PinSocket_1x02_P2.00mm_Vertical_SMD_Pin1Right"
-			(at 25.4 40.64 0)
+		(property "Footprint" ""
+			(at 38.1 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2302,7 +1859,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 25.4 40.64 0)
+			(at 38.1 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2311,7 +1868,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 25.4 40.64 0)
+			(at 38.1 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2329,72 +1886,6 @@
 			(project ""
 				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
 					(reference "J2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 134.62 24.13 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8bf296f5-fe6d-475f-932c-7a1de1764928")
-		(property "Reference" "#PWR02"
-			(at 134.62 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 134.62 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f0412607-8fae-4fd7-9c65-67981cf728ea")
-		)
-		(instances
-			(project "PreampCircuit"
-				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
-					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -2426,7 +1917,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+		(property "Footprint" ""
 			(at 99.06 34.5948 0)
 			(effects
 				(font
@@ -2469,74 +1960,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Battery_Cell")
-		(at 127 21.59 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bee58a21-88c1-46e2-8720-e6c1eae8abac")
-		(property "Reference" "BT1"
-			(at 125.1585 13.97 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Battery_Cell"
-			(at 125.1585 16.51 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinSocket_2.00mm:PinSocket_1x02_P2.00mm_Vertical_SMD_Pin1Right"
-			(at 125.476 21.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 125.476 21.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single-cell battery"
-			(at 127 21.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d29bcb07-9592-4ac3-8833-863d026d7bcd")
-		)
-		(pin "1"
-			(uuid "2b019f25-747d-47e0-be9b-18d8f32f534e")
-		)
-		(instances
-			(project ""
-				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
-					(reference "BT1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 80.01 29.21 0)
 		(unit 1)
@@ -2564,7 +1987,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
+		(property "Footprint" ""
 			(at 78.232 29.21 90)
 			(effects
 				(font
@@ -2608,16 +2031,16 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 53.34 46.99 0)
+		(at 66.04 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "cdac179c-1b47-48fb-be2c-4df2185bc4c4")
-		(property "Reference" "R5"
-			(at 55.88 45.7199 0)
+		(uuid "cb3ce7ac-bacd-4e0a-b23f-dd1af9f133ed")
+		(property "Reference" "R1"
+			(at 68.58 53.3399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2625,8 +2048,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100K"
-			(at 55.88 48.2599 0)
+		(property "Value" "3.3M"
+			(at 68.58 55.8799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2634,8 +2057,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal"
-			(at 51.562 46.99 90)
+		(property "Footprint" ""
+			(at 64.262 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2644,7 +2067,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 53.34 46.99 0)
+			(at 66.04 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2653,7 +2076,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 53.34 46.99 0)
+			(at 66.04 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2662,15 +2085,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7f38c46-c2d1-480d-84f3-b29e1c24793b")
+			(uuid "f452b6b1-81fb-4f27-b2ad-320f6cfbd860")
 		)
 		(pin "2"
-			(uuid "bd8f6eed-c6db-4b49-9e0f-669213bbdeba")
+			(uuid "fe79486a-65cf-444c-a580-db16b124cc7b")
 		)
 		(instances
-			(project "PreampCircuit"
+			(project ""
 				(path "/2bfd962c-74c5-4142-b55e-dbdb00ee74c3"
-					(reference "R5")
+					(reference "R1")
 					(unit 1)
 				)
 			)
