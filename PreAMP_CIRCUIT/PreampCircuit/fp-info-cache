@@ -1,4 +1,11 @@
-25659143525054432
+25662674372751034
+2pads
+2pads
+
+
+0
+2
+2
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -102892,3 +102899,10 @@ Varistor VF
 0
 2
 2
+pot
+POT_PTN16-A10220K1B1
+
+
+0
+3
+3
